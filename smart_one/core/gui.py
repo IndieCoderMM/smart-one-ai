@@ -22,7 +22,7 @@ class Gui(sg.Window):
                 sg.Multiline(size=(30, 10),
                              font="Helvetica 25",
                              echo_stdout_stderr=False,
-                             reroute_stdout=False,
+                             reroute_stdout=True,
                              autoscroll=True,
                              auto_size_text=True,
                              key=self.OUTPUT_KEY)
@@ -41,7 +41,7 @@ class Gui(sg.Window):
                     expand_x=True,
                     button_color=(sg.YELLOWS[0], sg.BLUES[0]),
                     bind_return_key=True,
-                    visible=False,
+                    visible=True,
                 ),
             ],
         ]
@@ -74,7 +74,7 @@ class Gui(sg.Window):
 
 
 if __name__ == "__main__":
-    gui = Gui("Test Window", "Python", False)
+    gui = Gui("Test Window", "Python")
     while True:
         event, values = gui.read()
         if gui.check_exit(event):
