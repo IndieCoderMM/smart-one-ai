@@ -1,37 +1,28 @@
-from core.gui import Gui
-from core.openai_helper import get_ai_respond
+from smart_one.interface.gui import Gui
+from smart_one.common.openai_helper import get_openai_respond
+from smart_one.common.constants import Status, Command
+from smart_one.core.memory import load_memory
+from smart_one.common.settings import MEMORY_PATH, NAME, SPEECH_RATE, GENDER
+
 from datetime import datetime
 from enum import Enum
-
 import speech_recognition as sr
 import pyttsx3
-
-MAX_TOKEN = 2000
-
-
-class Status(Enum):
-    ONLINE = 0
-    OFFLINE = 1
-
-
-class Command(Enum):
-    VOICE = 0
-    TEXT = 1
 
 
 class AI:
 
-    def __init__(self, name, data):
+    def __init__(self):
         self.gui = None
         self.voice = None
         self.chat_engine = None
         self.conversations = []
-        self.name = name
-        self.data_file = data
+        self.name = NAME
+        # self.data_file = data
         self.status = Status.ONLINE
         self.command = Command.VOICE
         self.data_size = 0
-        self.prompt = self.load_memory()
+        self.prompt = load_memory(MEMORY_PATH)
 
     def listen_voice_command(self) -> str:
         recognizer = sr.Recognizer()
@@ -64,32 +55,36 @@ class AI:
         prompt = f"\nYou: {query}\n{self.name}: "
         self.prompt += prompt
         try:
-            respond = get_openai_complete(self.prompt).lstrip()
+            respond = get_openai_respond(self.prompt).lstrip()
             self.prompt += respond
         except Exception as e:
             print(e)
             respond = "Please wait sir, I'm connecting to the server..."
         return respond
 
-    def load_memory(self) -> str:
-        prompt = ""
-        with open(self.data_file) as memory:
-            for line in memory:
-                self.data_size += len(line.split())
-                if self.data_size > MAX_TOKEN:
-                    break
-                prompt += line
-        return prompt
+    # def load_memory(self) -> str:
+    #     prompt = ""
+    #     with open(self.data_file) as memory:
+    #         for line in memory:
+    #             self.data_size += len(line.split())
+    #             if self.data_size > MAX_TOKEN:
+    #                 break
+    #             prompt += line
+    #     return prompt
 
     def init_gui(self, theme: str = "Python", minimal: bool = True):
         self.gui = Gui(self.name, theme, minimal)
 
     def init_voice_engine(self, rate: int, vid: int):
         self.voice = pyttsx3.init("sapi5")
+        if GENDER == "male":
+            gender = 0
+        else:
+            gender = 2
         self.voice.setProperty("rate", rate)
         self.voice.setProperty("volume", 1.0)
         voices = self.voice.getProperty("voices")
-        self.voice.setProperty("voice", voices[vid].id)
+        self.voice.setProperty("voice", voices[gender].id)
 
     def greeting(self):
         hour = datetime.now().hour

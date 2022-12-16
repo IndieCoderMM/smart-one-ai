@@ -1,12 +1,12 @@
 from smart_one.core.engine import AI, Status, Command
 import keyboard
 
-mavis = AI("Mavis", "database/mavis_data.txt")
+mavis = AI()
 
 
 def run():
     mavis.init_gui('DarkPurple4')
-    mavis.init_voice_engine(190, 2)
+    mavis.init_voice_engine(190, 1)
     mavis.greeting()
     response = None
     while True:
@@ -57,7 +57,3 @@ def run():
                 mavis.speak("I'm switching to OFFLINE mode.")
 
     mavis.terminate_program()
-
-
-if __name__ == "__main__":
-    run()

@@ -4,7 +4,7 @@ openai.api_key = "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"
 ENGINE = "text-davinci-002"
 
 
-def get_openai_complete(prompt):
+def get_openai_respond(prompt):
     respond = openai.Completion.create(engine=ENGINE,
                                        prompt=prompt,
                                        temperature=0.8,
