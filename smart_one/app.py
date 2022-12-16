@@ -1,28 +1,22 @@
-from smart_one.core.engine import AI, Status, Command
+from smart_one.core.ai import AI
+from smart_one.utils.constants import Status, Command
 import keyboard
 
 mavis = AI()
 
 
 def run():
-    mavis.init_gui('DarkPurple4')
-    mavis.init_voice_engine(190, 1)
     mavis.greeting()
     response = None
+
     while True:
-        if mavis.command == Command.TEXT:
-            query = mavis.take_text_command()
-            if query == "":
-                continue
-            if query == "exit":
-                break
-            response = mavis.get_ai_respond(query)
-            mavis.speak(response)
+        if keyboard.is_pressed("x"):
+            break
 
         if keyboard.is_pressed("space"):
             if mavis.status == Status.OFFLINE:
                 continue
-            query = mavis.listen_voice_command()
+            query = mavis.listen()
             if query == "exit":
                 break
             if query == "":
@@ -34,16 +28,7 @@ def run():
         if keyboard.is_pressed("p"):
             if response:
                 mavis.speak("I'm printing on the screen...")
-                mavis.print_on_screen(response)
-
-        if keyboard.is_pressed("c"):
-            if mavis.ask_permission(
-                    "Sir, do you want to change command method?",
-                    "Change Command Mode?"):
-                mavis.command = Command.TEXT if mavis.command == Command.VOICE else Command.VOICE
-                mavis.speak(
-                    f"Ok Sir, you can use {'voice' if mavis.command==Command.VOICE else 'text'} command now'"
-                )
+                mavis.print_output(response)
 
         if keyboard.is_pressed("o"):
             if mavis.status == Status.OFFLINE:
