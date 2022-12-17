@@ -1,6 +1,8 @@
 import openai
+import os
 
-openai.api_key = "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"
+# Set OpenAI API key
+openai.api_key = os.environ["OPENAI_KEY"]
 ENGINE = "text-davinci-002"
 
 

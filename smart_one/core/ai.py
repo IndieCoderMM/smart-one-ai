@@ -13,10 +13,10 @@ class AI:
 
     def __init__(self):
         self.name = NAME
-        self.status = Status.ONLINE
+        self.status = Status.OFFLINE
         self.command = Command.VOICE
 
-        self.gui = Gui(self.name, "Python", True)
+        self.gui = Gui("Smart One A.I.")
         self.voice = Voice()
         self.recognizer = Recognizer()
         self.prompt = load_memory(MEMORY_PATH)

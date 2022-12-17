@@ -12,33 +12,20 @@ def run():
     while True:
         if keyboard.is_pressed("x"):
             break
-
-        if keyboard.is_pressed("space"):
-            if mavis.status == Status.OFFLINE:
-                continue
-            query = mavis.listen()
-            if query == "exit":
-                break
-            if query == "":
-                continue
-
-            response = mavis.get_ai_respond(query)
-            mavis.speak(response)
-
-        if keyboard.is_pressed("p"):
-            if response:
-                mavis.speak("I'm printing on the screen...")
-                mavis.print_output(response)
-
-        if keyboard.is_pressed("o"):
-            if mavis.status == Status.OFFLINE:
-                mavis.status = Status.ONLINE
-                mavis.speak("I'm ONLINE.")
-                continue
-            if mavis.ask_permission(
-                    "Sir,  Do you want me to work in offline mode?",
-                    "Confirm?"):
-                mavis.go_offline_mode()
-                mavis.speak("I'm switching to OFFLINE mode.")
+        event, values = mavis.gui.read()
+        if mavis.gui.check_exit(event):
+            break
+        if event == "-CHANGE-MODE-":
+            mode = "Text" if mavis.gui["-MODE-"].get() == "Voice" else "Voice"
+            mavis.gui["-MODE-"].update(mode)
+        if event == "-SHOW-CMD-":
+            mavis.gui.print_output("exit; save; sleep;")
+        if event == "ENTER":
+            query = values["-REQUEST-"]
+            mavis.gui["-REQUEST-"].update("")
+            respond = mavis.get_ai_respond(query)
+            mavis.gui["-OUTPUT-"].update("")
+            print(respond)
+            mavis.speak(respond)
 
     mavis.terminate_program()
