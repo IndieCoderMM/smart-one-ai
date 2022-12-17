@@ -8,7 +8,6 @@ pysimplegui = "*"
 openai = "*"
 speechrecognition = "*"
 pyttsx3 = "*"
-keyboard = "*"
 pyaudio = "*"
 
 [dev-packages]

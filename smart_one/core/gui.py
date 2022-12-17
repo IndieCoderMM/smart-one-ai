@@ -1,15 +1,42 @@
 import PySimpleGUI as sg
 
-SEND = "-ENTER-"
-PROMPT_KEY = "-PROMPT-"
-REQUEST_KEY = "-REQUEST-"
-OUTPUT_KEY = "-OUTPUT-"
+GREEN = "#16A085"
+LIGHTGREEN = "#27AE60"
+LIGHTBLUE = "#3498DB"
+DARK = "#2C3E50"
+WHITE = "#ECF0F1"
+BLUE = "#2980B9"
+PURPLE = "#8E44AD"
+YELLOW = "#F1C40f"
+INDIGO = "#3F51B5"
+
+theme_dict = {
+    'BACKGROUND': DARK,
+    'TEXT': YELLOW,
+    'INPUT': YELLOW,
+    'TEXT_INPUT': "BLACK",
+    'SCROLL': BLUE,
+    'BUTTON': (WHITE, GREEN),
+    'PROGRESS': (WHITE, BLUE),
+    'BORDER': 1,
+    'SLIDER_DEPTH': 0,
+    'PROGRESS_DEPTH': 0
+}
+
+sg.theme_add_new('custom', theme_dict)
+sg.theme('custom')
+
+sg.set_options(font="Tahoma 17")
 
 
 class Gui(sg.Window):
+    STATUS = "-STATUS-"
+    QUERY = "-QUERY-"
+    OUTPUT = "-OUTPUT-"
+    NET = "-NET-"
 
     def __init__(self, title):
-        sg.theme("DarkBlue")
+
         self.layout = self.get_layout()
         super().__init__(title,
                          self.layout,
@@ -21,13 +48,14 @@ class Gui(sg.Window):
     def get_dashboard(self):
         col = sg.Column([[
             sg.Text("Status: "),
-            sg.Text("Standby", key="-STATUS-", size=(6, 1))
-        ], [sg.Text("Network: "),
-            sg.Text("Online", key="-NET-", size=(6, 1))],
-                         [
-                             sg.Text("CMD Mode: "),
-                             sg.Text("Voice", key="-MODE-", size=(6, 1))
-                         ]])
+            sg.Text("Standby", key=self.STATUS, size=(10, 1))
+        ], [
+            sg.Text("Network: "),
+            sg.Text("Online", key=self.NET, size=(10, 1))
+        ], [
+            sg.Text("CMD Mode: "),
+            sg.Text("Voice", key="-MODE-", size=(10, 1))
+        ]])
         return col
 
     def get_layout(self):
@@ -35,36 +63,30 @@ class Gui(sg.Window):
         layout = [[
             sg.Multiline(size=(30, 10),
                          font="Helvetica 18",
-                         echo_stdout_stderr=False,
-                         reroute_stdout=True,
                          autoscroll=True,
                          auto_size_text=True,
-                         key=OUTPUT_KEY), col
+                         pad=(1, 1),
+                         key=self.OUTPUT,
+                         disabled=True,
+                         background_color=INDIGO,
+                         text_color=WHITE), col
         ],
                   [
-                      sg.Input(
-                          expand_x=True,
-                          key=REQUEST_KEY,
-                          focus=True,
-                          font="Consolas 18",
-                      ),
+                      sg.Input(expand_x=True, key=self.QUERY, focus=True),
                       sg.Button(
                           "ENTER",
                           font="Helvetica 14",
                           expand_x=True,
-                          button_color="YELLOW on BLUE",
                           bind_return_key=True,
                           visible=True,
                       ),
                   ],
                   [
-                      sg.Button("CMD", key="-SHOW-CMD-"),
-                      sg.Button("Sound On", key="-SOUND-"),
-                      sg.Button("Print", key="-PRINT-"),
-                      sg.Button("Mic", key="-CHANGE-MODE-"),
-                      sg.Button("Close",
-                                button_color="YELLOW on RED",
-                                size=(6, 1))
+                      sg.Button("CMD", key="-SHOW-CMD-", expand_x=True),
+                      sg.Button("Sound On", key="-SOUND-", expand_x=True),
+                      sg.Button("Print", key="-PRINT-", expand_x=True),
+                      sg.Button("Mic", key="-CHANGE-MODE-", expand_x=True),
+                      sg.Button("Close", expand_x=True)
                   ]]
         return layout
 
@@ -90,6 +112,9 @@ class Gui(sg.Window):
             font="Consolas 20",
             keep_on_top=True,
         ) == "OK")
+
+    def update(self, key, text):
+        self[key].update(text)
 
 
 if __name__ == "__main__":

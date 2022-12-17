@@ -19,8 +19,6 @@ class Recognizer:
             print("Recognizing...")
             query = self.engine.recognize_google(audio, language=self.LANG)
             print(query)
-        except sr.RequestError:
-            print("Request error!")
         except Exception as e:
             print(e)
 

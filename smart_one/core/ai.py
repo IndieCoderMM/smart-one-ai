@@ -3,23 +3,18 @@ from smart_one.core.voice import Voice
 from smart_one.core.recognizer import Recognizer
 from smart_one.core.memory import load_memory
 from smart_one.utils.openai_helper import get_openai_respond
-from smart_one.utils.constants import Status, Command
-from smart_one.utils.settings import MEMORY_PATH, NAME, SPEECH_RATE, GENDER
-
-from datetime import datetime
+from smart_one.utils.settings import NAME, SPEECH_RATE, GENDER
 
 
 class AI:
 
     def __init__(self):
         self.name = NAME
-        self.status = Status.OFFLINE
-        self.command = Command.VOICE
 
         self.gui = Gui("Smart One A.I.")
         self.voice = Voice()
         self.recognizer = Recognizer()
-        self.prompt = load_memory(MEMORY_PATH)
+        self.prompt = load_memory()
 
     def get_ai_respond(self, query: str) -> str:
         prompt = f"\nYou: {query}\n{self.name}: "
@@ -28,29 +23,25 @@ class AI:
             respond = get_openai_respond(self.prompt).lstrip()
             self.prompt += respond
         except Exception as e:
-            print(e)
-            respond = "Please wait sir, I'm connecting to the server..."
+            respond = "Sir, "
         return respond
 
     def greeting(self):
-        hour = datetime.now().hour
-        if 6 <= hour < 12:
-            self.speak("Good Morning sir")
-        elif 12 <= hour < 16:
-            self.speak("Good Afternoon sir")
-        else:
-            self.speak("Good Evening sir")
-        self.speak("I'm online. How can I help you?")
+        self.speak(f"Hello sir, I'm {self.name}")
+        # self.speak("You can ask me anything and I will try my best to answer.")
+        # self.speak(
+        #     "If you want to use voice command, press SPACE BAR on your keyboard."
+        # )
 
     def terminate_program(self):
-        self.speak("I'm closing the program.")
+        self.speak("See you sir")
         self.gui.close()
 
     def speak(self, message: str):
         self.voice.speak(message)
 
     def listen(self) -> str:
-        self.recognizer.listen()
+        return self.recognizer.listen()
 
     def print_output(self, text: str):
         self.gui.print_output(text)

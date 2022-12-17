@@ -1,6 +1,10 @@
-def load_memory(file: str) -> str:
+from smart_one.utils.settings import MEMORY_PATH, NAME, USER
+
+
+def load_memory() -> str:
     memo = ""
-    with open(file) as memory:
+    with open(MEMORY_PATH) as memory:
         for line in memory:
-            memo += line
+            memo += line.replace("$[USERNAME]",
+                                 USER).replace("$[AINAME]", NAME)
     return memo
