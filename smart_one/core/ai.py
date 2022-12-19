@@ -1,9 +1,10 @@
 from smart_one.core.gui import Gui
 from smart_one.core.voice import Voice
 from smart_one.core.recognizer import Recognizer
-from smart_one.core.memory import load_memory
+from smart_one.core.memory import load_memory, save_memory
 from smart_one.utils.openai_helper import get_openai_respond
 from smart_one.utils.settings import NAME, SPEECH_RATE, GENDER
+from smart_one.utils.constants import CmdMode
 
 
 class AI:
@@ -15,6 +16,7 @@ class AI:
         self.voice = Voice()
         self.recognizer = Recognizer()
         self.prompt = load_memory()
+        self.mode = CmdMode.TEXT
 
     def get_ai_respond(self, query: str) -> str:
         prompt = f"\nYou: {query}\n{self.name}: "
@@ -43,8 +45,20 @@ class AI:
     def listen(self) -> str:
         return self.recognizer.listen()
 
-    def print_output(self, text: str):
-        self.gui.print_output(text)
+    def change_cmd_mode(self):
+        self.mode = CmdMode.VOICE if self.mode == CmdMode.TEXT else CmdMode.TEXT
+        mode = "Voice Input" if self.mode == CmdMode.VOICE else "Text Input"
+        status = "Listening" if self.mode == CmdMode.VOICE else "Standby"
+        self.gui.update(self.gui.MODE, mode)
+        self.gui.update(self.gui.STATUS, status)
+
+    def save_conversation(self):
+        if len(self.prompt) > 1500:
+            self.speak(
+                "Sir, I can't save the conversation. My memory is full.")
+            return False
+        save_memory(self.prompt)
+        self.speak("Alright sir, I added this conversation to my memory.")
 
     # def save_memory(self):
     #     with open(self.data_file, "w") as file:

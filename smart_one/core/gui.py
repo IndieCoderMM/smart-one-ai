@@ -32,11 +32,15 @@ sg.set_options(font="Tahoma 17")
 class Gui(sg.Window):
     STATUS = "-STATUS-"
     QUERY = "-QUERY-"
+    MODE = "-MODE-"
     OUTPUT = "-OUTPUT-"
     NET = "-NET-"
+    CHANGE_CMD = "-CHANGE-CMD-"
+    CLEAR = "-CLEAR-"
+    SEND = "-SEND-"
+    SAVE = "-SAVE-"
 
     def __init__(self, title):
-
         self.layout = self.get_layout()
         super().__init__(title,
                          self.layout,
@@ -48,44 +52,60 @@ class Gui(sg.Window):
     def get_dashboard(self):
         col = sg.Column([[
             sg.Text("Status: "),
-            sg.Text("Standby", key=self.STATUS, size=(10, 1))
-        ], [
-            sg.Text("Network: "),
-            sg.Text("Online", key=self.NET, size=(10, 1))
-        ], [
-            sg.Text("CMD Mode: "),
-            sg.Text("Voice", key="-MODE-", size=(10, 1))
-        ]])
+            sg.Text("Standby",
+                    key=self.STATUS,
+                    size=(10, 1),
+                    text_color=LIGHTGREEN)
+        ],
+                         [
+                             sg.Text("Network: "),
+                             sg.Text("Online",
+                                     key=self.NET,
+                                     size=(10, 1),
+                                     text_color=LIGHTGREEN)
+                         ],
+                         [
+                             sg.Text("CMD Mode: "),
+                             sg.Text("Text",
+                                     key=self.MODE,
+                                     size=(10, 1),
+                                     text_color=LIGHTGREEN)
+                         ]])
         return col
 
     def get_layout(self):
         col = self.get_dashboard()
         layout = [[
-            sg.Multiline(size=(30, 10),
-                         font="Helvetica 18",
+            sg.Multiline(size=(40, 10),
+                         font="Consolas 15",
                          autoscroll=True,
                          auto_size_text=True,
-                         pad=(1, 1),
+                         pad=(2, 1),
                          key=self.OUTPUT,
                          disabled=True,
                          background_color=INDIGO,
                          text_color=WHITE), col
         ],
                   [
-                      sg.Input(expand_x=True, key=self.QUERY, focus=True),
+                      sg.Input(expand_x=True,
+                               key=self.QUERY,
+                               focus=True,
+                               font="Consolas 14"),
                       sg.Button(
-                          "ENTER",
-                          font="Helvetica 14",
+                          "Send",
+                          key=self.SEND,
                           expand_x=True,
                           bind_return_key=True,
-                          visible=True,
+                          visible=False,
                       ),
                   ],
                   [
-                      sg.Button("CMD", key="-SHOW-CMD-", expand_x=True),
-                      sg.Button("Sound On", key="-SOUND-", expand_x=True),
-                      sg.Button("Print", key="-PRINT-", expand_x=True),
-                      sg.Button("Mic", key="-CHANGE-MODE-", expand_x=True),
+                      sg.Button("Clear", key=self.CLEAR, expand_x=True),
+                      sg.Button("Save", key=self.SAVE, expand_x=True),
+                      sg.Button("Save", key="-PRINT-", expand_x=True),
+                      sg.Button("Voice Cmd",
+                                key=self.CHANGE_CMD,
+                                expand_x=True),
                       sg.Button("Close", expand_x=True)
                   ]]
         return layout
@@ -95,7 +115,7 @@ class Gui(sg.Window):
         return event == sg.WIN_CLOSED or event == "Close"
 
     @staticmethod
-    def print_output(message):
+    def show_popup(message):
         sg.PopupOK(
             message,
             keep_on_top=True,
@@ -104,7 +124,6 @@ class Gui(sg.Window):
 
     @staticmethod
     def get_confirm(prompt):
-        # choice,_ = sg.Window(title, [[sg.T(prompt)], [sg.Yes(s=10), sg.No(s=10)]],disable_close=True).read(close=True)
         return (sg.PopupOKCancel(
             prompt,
             no_titlebar=True,
@@ -115,16 +134,9 @@ class Gui(sg.Window):
 
     def update(self, key, text):
         self[key].update(text)
+        self.refresh()
 
-
-if __name__ == "__main__":
-    gui = Gui("Test Window")
-    while True:
-        event, values = gui.read()
-        if gui.check_exit(event):
-            break
-        if event == "-CHANGE-MODE-":
-            mode = "Text" if gui["-MODE-"].get() == "Voice" else "Voice"
-            gui["-MODE-"].update(mode)
-        if event == "-SHOW-CMD-":
-            gui.print_output("exit; save; sleep;")
+    def print(self, query, respond, ai_name):
+        conversation = self[self.OUTPUT].get()
+        conversation += f"\n$You: {query}\n${ai_name}: {respond}"
+        self.update(self.OUTPUT, conversation)

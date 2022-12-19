@@ -11,14 +11,14 @@ class Recognizer:
 
     def listen(self) -> str:
         with self.mic as source:
-            print("Listening...")
+            # print("Listening...")
             audio = self.engine.listen(source)
 
         query: str = ""
         try:
-            print("Recognizing...")
+            # print("Recognizing...")
             query = self.engine.recognize_google(audio, language=self.LANG)
-            print(query)
+            # print(query)
         except Exception as e:
             print(e)
 
