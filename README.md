@@ -1,23 +1,9 @@
-<div align="center">
-<!-- Badges -->
-<p>
-  <a href="">
-    <img src="https://img.shields.io/github/last-commit/IndieCoderMM/smart-one-ai" alt="last update" />
-  </a>
-  <a href="https://github.com/IndieCoderMM/smart-one-ai/network/members">
-    <img src="https://img.shields.io/github/forks/IndieCoderMM/smart-one-ai" alt="forks" />
-  </a>
-  <a href="https://github.com/IndieCoderMM/smart-one-ai/stargazers">
-    <img src="https://img.shields.io/github/stars/IndieCoderMM/smart-one-ai" alt="stars" />
-  </a>
-  <a href="https://github.com/IndieCoderMM/smart-one-ai/issues/">
-    <img src="https://img.shields.io/github/issues/IndieCoderMM/smart-one-ai" alt="open issues" />
-  </a>
-  <a href="https://github.com/IndieCoderMM/smart-one-ai/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/IndieCoderMM/smart-one-ai.svg" alt="license" />
-  </a>
-</p>
-</div>
+[![CodeFactor](https://www.codefactor.io/repository/github/indiecodermm/smart-one-ai/badge)](https://www.codefactor.io/repository/github/indiecodermm/smart-one-ai)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5d39b9280da5ddcf406e/maintainability)](https://codeclimate.com/github/IndieCoderMM/smart-one-ai/maintainability)
+![LastUpdate](https://img.shields.io/github/last-commit/IndieCoderMM/smart-one-ai)
+[![Forks](https://img.shields.io/github/forks/IndieCoderMM/smart-one-ai)](https://github.com/IndieCoderMM/smart-one-ai/network/members)
+![Stars](https://img.shields.io/github/stars/IndieCoderMM/smart-one-ai)
+[![License](https://img.shields.io/github/license/IndieCoderMM/smart-one-ai.svg)](https://github.com/IndieCoderMM/smart-one-ai/blob/master/LICENSE)
 
 ## Table of Contents
 
