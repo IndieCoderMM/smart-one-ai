@@ -11,6 +11,6 @@ def load_memory() -> str:
 
 
 def save_memory(data: str):
-    data = data.replace("YOU:", "$[USERNAME]:").replace(NAME, "$[AINAME]")
+    data = data.replace(USER, "$[USERNAME]").replace(NAME, "$[AINAME]")
     with open(MEMORY_PATH, "w") as file:
         file.write(data)

@@ -1,43 +1,52 @@
 from smart_one.core.ai import AI
-from smart_one.utils.constants import CmdMode
 
-mavis = AI()
+import socket
+
+is_online = lambda: socket.gethostbyname(socket.gethostname()) != "127.0.0.1"
+
+jarvis = AI()
 
 
 def run():
     respond: str = ""
     query: str = ""
-    mavis.greeting()
+    jarvis.greeting()
     while True:
-        event, values = mavis.gui.read()
-        if mavis.gui.check_exit(event):
+        event, values = jarvis.gui.read()
+        if jarvis.gui.check_exit(event):
             break
+        jarvis.online = is_online()
+        jarvis.gui.update_value(jarvis.gui.NET,
+                                "Online" if jarvis.online else "Offline")
 
-        if event == mavis.gui.SEND:
-            query = values[mavis.gui.QUERY]
-            mavis.gui.update(mavis.gui.QUERY, "")
+        if event == jarvis.gui.SEND:
+            query = values[jarvis.gui.QUERY]
+            jarvis.gui.update_value(jarvis.gui.QUERY, "")
 
-        if event == mavis.gui.CHANGE_CMD:
-            mavis.change_cmd_mode()
-            if mavis.mode == CmdMode.VOICE:
-                mavis.speak("I'm listening sir.")
-                query = mavis.listen()
-                mavis.gui.update(mavis.gui.STATUS, "Recognizing")
-                mavis.change_cmd_mode()
+        if event == jarvis.gui.LISTEN:
+            jarvis.change_cmd_mode()
+            if jarvis.listening:
+                jarvis.speak("I'm listening sir.")
+                query = jarvis.listen()
+                jarvis.gui.update_value(jarvis.gui.STATUS, "Recognizing")
+                jarvis.change_cmd_mode()
 
-        if event == mavis.gui.SAVE:
-            mavis.save_conversation()
+        if event == jarvis.gui.SAVE:
+            jarvis.save_to_memory()
 
-        if event == mavis.gui.CLEAR:
-            mavis.clear_conversation()
+        if event == jarvis.gui.PRINT:
+            jarvis.print_conversation()
+
+        if event == jarvis.gui.CLEAR:
+            jarvis.gui.clear_screen()
 
         if query:
-            respond = mavis.get_ai_respond(query)
+            respond = jarvis.get_ai_respond(query)
 
         if respond:
-            mavis.gui.print(query, respond, mavis.name)
-            mavis.speak(respond)
+            jarvis.gui.print(query, respond, jarvis.name)
+            jarvis.speak(respond)
         respond = ""
         query = ""
 
-    mavis.terminate_program()
+    jarvis.terminate_program()
