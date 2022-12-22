@@ -18,13 +18,27 @@
   </a>
 </p>
 </div>
-<br />
 
-# Smart One - A.I. Assistant
+## Table of Contents
+
+- [😎 Smart One - A.I. Assistant](#-smart-one---ai-assistant)
+  - [🔥 Features](#-features)
+  - [⚙ Requirements](#-requirements)
+  - [📦 Libraries](#-libraries)
+  - [📥 Installation](#-installation)
+  - [📧 Contact](#-contact)
+  - [🤝 Contributing](#-contributing)
+  - [🎁 Starcatcher](#-starcatcher)
+  - [✨ Inspiration](#-inspiration)
+  - [📜 License](#-license)
+
+# 😎 Smart One - A.I. Assistant
 
 **Smart One** is an A.I. assistant program that can listen to a user's input and provide an appropriate response. It uses [OpenAI API](https://beta.openai.com/docs/api-reference?lang=python) to understand and interpret user's request and generate a response in real-time.
 
-## Key Features
+![Screenshot](screenshot00.png)
+
+## 🔥 Features
 
 - Natural language processing: Able to understand user requests in natural language
 - Quick and accurate response: Efficient and seamless communication
@@ -32,21 +46,29 @@
 - Audio output: Provide responses in audio form
 - User-friendly GUI: Simple and intuitive interface
 
-## Requirements
+## ⚙ Requirements
 
-- Python: 3.9 or higher
+- [Python](https://www.python.org/): 3.9 or higher
+- [Pipenv](https://docs.pipenv.org/): Python packaging tool
 
-## Installation
+## 📦 Libraries
+
+- [OpenAI Python](https://github.com/openai/openai-python)
+- [PySimpleGUI](https://pypi.org/project/PySimpleGUI/)
+- [Speech Recognition](https://pypi.org/project/SpeechRecognition/)
+- [Pyttsx3](https://pypi.org/project/pyttsx3/)
+
+## 📥 Installation
 
 To install the program, follow these steps:
 
 1. Clone this repo to the desired folder.
 2. Open terminal in the project folder.
-3. If you are using [Pipenv](https://pypi.org/project/pipenv/), run `pipenv install` 
-  - or run `pip install -r requirements.txt`
+3. Run `pipenv install`
 4. To start the program, run `python -m smart_one`
+   _You can customize the profile (name, voice, etc) in `smart_one/utils/settings.py`_
 
-## Contact
+## 📧 Contact
 
 I am always looking for ways to improve my project. If you have any suggestions or ideas, I would love to hear from you.
 
@@ -55,31 +77,28 @@ I am always looking for ways to improve my project. If you have any suggestions 
 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/hthantoo)
 [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](hthant00chk@gmail.com)
 
-
 <!-- CONTRIBUTING -->
 
-## Contributing
+## 🤝 Contributing
 
 I welcome any and all contribution that can help me improve my project. If you have any ideas or feedback that you'd like to share, please don't hesitate to reach out.
 
-
 <!-- SUPPORT -->
 
-## Show your support
+## 🎁 Starcatcher
 
 If you like this project, you can support me by giving a ⭐.
 
-
 <!-- ACKNOWLEDGEMENTS -->
 
-##  Acknowledgments
-- Credits
+## ✨ Inspiration
 
+- [Python-ai-assistant](https://github.com/ggeop/Python-ai-assistant)
+- [Build Alexa/Siri-equivalent bot in Python](https://betterprogramming.pub/building-an-alexa-or-siri-equivalent-bot-in-python-ea07ed001445?gi=fff8becaf3d6)
+- [How to build Jarvis](https://www.freecodecamp.org/news/python-project-how-to-build-your-own-jarvis-using-python/)
 
 <!-- LICENSE -->
 
-## License 
+## 📜 License
 
 This project is [MIT](./LICENSE) licensed.
-
-
