@@ -66,13 +66,14 @@ To install the program, follow these steps:
 2. Open terminal in the project folder.
 3. Run `pipenv install`
 4. To start the program, run `python -m smart_one`
-   _You can customize the profile (name, voice, etc) in `smart_one/utils/settings.py`_
+
+_You can customize the profile (name, voice, etc) in `smart_one/utils/settings.py`_
 
 ## 📧 Contact
 
 I am always looking for ways to improve my project. If you have any suggestions or ideas, I would love to hear from you.
 
-[![Github](https://img.shields.io/badge/GitHub-1FFFFFF?style=for-the-badge&logo=github&logoColor=black)](https://github.com/IndieCoderMM)
+[![Github](https://img.shields.io/badge/GitHub-673AB7?style=for-the-badge&logo=github&logoColor=white)](https://github.com/IndieCoderMM)
 [![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/hthant_oo)
 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/hthantoo)
 [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](hthant00chk@gmail.com)
