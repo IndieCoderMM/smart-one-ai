@@ -14,8 +14,9 @@
   - [📥 Installation](#-installation)
   - [📧 Contact](#-contact)
   - [🤝 Contributing](#-contributing)
-  - [🎁 Starcatcher](#-starcatcher)
-  - [✨ Inspiration](#-inspiration)
+  - [💖 Show your support](#-show-your-support)
+  - [🎯 Roadmap](#-roadmap)
+  - [💡 Inspiration](#-inspiration)
   - [📜 License](#-license)
 
 # 😎 Smart One - A.I. Assistant
@@ -26,9 +27,11 @@
 
 ## 🔥 Features
 
-- Natural language processing: Able to understand user requests in natural language
+- Speech recognition: Listen to the user's input through a microphone and transcribe into text
+- Natural language processing: Able to understand the meaning and context of user's input
 - Quick and accurate response: Efficient and seamless communication
-- Information provision: Provide information on a wide range of topics
+- Contextual understanding: Remember previous interactions and give more relevant responses
+- Knowledge base: Provide information on a wide range of topics
 - Audio output: Provide responses in audio form
 - User-friendly GUI: Simple and intuitive interface
 
@@ -72,13 +75,19 @@ I welcome any and all contribution that can help me improve my project. If you h
 
 <!-- SUPPORT -->
 
-## 🎁 Starcatcher
+## 💖 Show your support
 
 If you like this project, you can support me by giving a ⭐.
 
+## 🎯 Roadmap
+
+- [ ] Save current conversation
+- [ ] Os-related tasks
+- [ ] Code translation
+
 <!-- ACKNOWLEDGEMENTS -->
 
-## ✨ Inspiration
+## 💡 Inspiration
 
 - [Python-ai-assistant](https://github.com/ggeop/Python-ai-assistant)
 - [Build Alexa/Siri-equivalent bot in Python](https://betterprogramming.pub/building-an-alexa-or-siri-equivalent-bot-in-python-ea07ed001445?gi=fff8becaf3d6)
