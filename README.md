@@ -52,9 +52,19 @@
 To install the program, follow these steps:
 
 1. Clone this repo to the desired folder.
+```sh
+git clone git@github.com:IndieCoderMM/smart-one-ai.git 
+```
 2. Open terminal in the project folder.
-3. Run `pipenv install`
-4. To start the program, run `python -m smart_one`
+3. Install the libraries.
+```sh
+pipenv install
+```
+4. Activate pipenv and run the program.
+```sh
+pipenv shell
+python -m smart_one
+```
 
 _You can customize the profile (name, voice, etc) in `smart_one/utils/settings.py`_
 
