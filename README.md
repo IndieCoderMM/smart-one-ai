@@ -63,7 +63,8 @@ cd smart-one-ai
 ```sh
 pipenv install
 ```
-4. Activate pipenv and run the program.
+4. Get secret key from [OpenAI API](https://beta.openai.com/account/api-keys) and add the key in `smart_one/utils/openai_helper.py`.
+5. Activate pipenv and run the program.
 ```sh
 pipenv shell
 python -m smart_one

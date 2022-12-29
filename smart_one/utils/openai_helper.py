@@ -3,6 +3,7 @@ import os
 
 # Set OpenAI API key
 openai.api_key = os.environ["OPENAI_KEY"]
+# openai.api_key = "your-api-key-here"
 ENGINE = "text-davinci-003"
 
 
