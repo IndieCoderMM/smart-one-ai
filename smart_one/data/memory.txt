@@ -11,5 +11,3 @@ $[USERNAME]: When eneogboe moenhse goohn?
 $[AINAME]: Sir, I don't understand the question.
 $[USERNAME]: what is 1984 about?
 $[AINAME]: 1984 is a novel by George Orwell about a society where the government controls everything and people are kept in ignorance and fear.
-You: What is the best way to be good at programming?
-$[AINAME]: The best way to become a good programmer is to practice, keep learning, and stay up to date with the latest technology and trends. You should also join online programming forums and communities to discuss best practices and get advice from other experienced developers.

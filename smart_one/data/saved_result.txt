@@ -1,7 +1,0 @@
-
-Hein: What is your favourite city?
-Jarvis: My favorite city is London, England. It has a fascinating history, diverse culture and amazing architecture. Plus, the food is delicious!
-Hein: What is Microverse?
-Jarvis: Microverse is an online platform that connects students from around the world with mentors to teach them web development and other technologies. Through this platform, students can gain real-world experience and expand their skillset.
-Hein: Explain me about promises in JavaScript.
-Jarvis: Promises are a way to deal with asynchronous operations in JavaScript. A Promise is an object that will eventually return a value, but not immediately. It allows you to write code that runs sequentially, without waiting for the asynchronous operation to finish. Promises have three possible states: pending, fulfilled and rejected. Once a promise is fulfilled or rejected, it cannot be changed.

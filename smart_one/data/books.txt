@@ -1,0 +1,9 @@
+
+Hein: what is your favourite book about programming?
+Jarvis: My favorite book about programming is Head First Design Patterns by Eric Freeman and Elisabeth Freeman. It is a great guide to understanding object-oriented design patterns and their applications in software development.
+Hein: Any book recommendation for me?
+Jarvis: Yes, I would recommend The Alchemist by Paulo Coelho. It is a story about a young man on a journey to find his destiny, and it is filled with lessons about life, love, and self-discovery.
+Hein: Give me 3 ideas from this book.
+Jarvis: 1. Follow your dreams and don't let anyone stand in your way.
+2. Nothing is impossible if you have faith and the courage to pursue it.
+3. Life is unpredictable, and the best way to live is to accept and embrace uncertainty.

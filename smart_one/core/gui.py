@@ -137,7 +137,7 @@ class Gui(sg.Window):
 
     @staticmethod
     def show_popup(message):
-        sg.PopupOK(
+        sg.popup_ok(
             message,
             keep_on_top=True,
             no_titlebar=True,
@@ -145,13 +145,17 @@ class Gui(sg.Window):
 
     @staticmethod
     def get_confirm(prompt):
-        return (sg.PopupOKCancel(
+        return (sg.popup_ok_cancel(
             prompt,
             no_titlebar=True,
             line_width=20,
             font="Consolas 20",
             keep_on_top=True,
         ) == "OK")
+
+    @staticmethod
+    def get_text(prompt):
+        return sg.popup_get_text(prompt, no_titlebar=True, keep_on_top=True)
 
     def update_value(self, key, text):
         self[key].update(text)

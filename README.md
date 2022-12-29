@@ -55,7 +55,10 @@ To install the program, follow these steps:
 ```sh
 git clone git@github.com:IndieCoderMM/smart-one-ai.git 
 ```
-2. Open terminal in the project folder.
+2. Enter the project directory.
+```sh
+cd smart-one-ai
+```
 3. Install the libraries.
 ```sh
 pipenv install
@@ -91,7 +94,7 @@ If you like this project, you can support me by giving a ⭐.
 
 ## 🎯 Roadmap
 
-- [ ] Save current conversation
+- [x] Save current conversation
 - [ ] Os-related tasks
 - [ ] Code translation
 

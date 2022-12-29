@@ -1,4 +1,4 @@
-MEMORY_PATH = "smart_one/data/memory.txt"
+MEMORY_PATH = "smart_one/data/"
 
 # AI PROFILE
 USER = "Hein"

@@ -1,7 +1,7 @@
 from smart_one.core.gui import Gui
 from smart_one.core.voice import Voice
 from smart_one.core.recognizer import Recognizer
-from smart_one.core.memory import load_memory, save_memory
+from smart_one.utils.memory import load_memory, save_memory
 from smart_one.utils.openai_helper import get_openai_respond
 from smart_one.utils.settings import USER, NAME, SPEECH_RATE, GENDER
 
@@ -19,7 +19,7 @@ class AI:
         self.online = False
 
     def get_ai_respond(self, query: str) -> str:
-        """Get respond from openAI
+        """Get respond from openAI API
 
         Args:
             query (str): User input
@@ -38,7 +38,7 @@ class AI:
 
     def greeting(self):
         self.speak(f"Hello sir, I'm {self.name}")
-        # self.speak("You can ask me anything and I will try my best to answer.")
+        self.speak("How can I help you?")
 
     def terminate_program(self):
         self.gui.close()
@@ -56,16 +56,7 @@ class AI:
         self.gui.update_value(self.gui.MODE, mode)
         self.gui.update_value(self.gui.STATUS, status)
 
-    def save_to_memory(self):
-        if len(self.memory + self.prompt) > 1000:
-            self.speak(
-                "Sir, I can't save the conversation. My memory is full.")
-            self.speak("But I can print the file for you.")
-            return False
-        save_memory(self.memory + self.prompt)
-        self.speak("Alright sir, I added this conversation to my memory.")
-
-    def print_conversation(self):
-        with open("smart_one/data/saved_result.txt", "w") as file:
-            file.write(self.prompt)
+    def save_conversation(self):
+        filename = self.gui.get_text("Enter the filename: ")
+        save_memory(filename, self.prompt)
         self.speak("Ok sir, I saved this conversation to my data folder.")

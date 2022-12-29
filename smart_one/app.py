@@ -32,10 +32,10 @@ def run():
                 jarvis.change_cmd_mode()
 
         if event == jarvis.gui.SAVE:
-            jarvis.save_to_memory()
+            jarvis.save_conversation()
 
         if event == jarvis.gui.PRINT:
-            jarvis.print_conversation()
+            jarvis.save_conversation()
 
         if event == jarvis.gui.CLEAR:
             jarvis.gui.clear_screen()
